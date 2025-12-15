@@ -137,7 +137,7 @@ class Jogador:
             'pontuacao': self.pontuacao
         }
 
-# ============================================================================
+# testando testando
 
 class ObjetoColetavel:
     """
