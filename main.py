@@ -5,6 +5,7 @@ from source.inimigos import Inimigo
 from source.jogador import Jogador
 from source.coletaveis import gerar_coletavel
 from source.hud import HUD
+from source.cenario import Cenario
 
 class Jogo:
     def __init__(self):
@@ -13,6 +14,7 @@ class Jogo:
         pygame.display.set_caption(TITULO_JOGO)
         self.clock = pygame.time.Clock()
         
+        self.cenario = Cenario()
         self.hud = HUD()  
         self.rodando = True
         self.game_over = False
@@ -65,6 +67,7 @@ class Jogo:
         if self.game_over:
             return
 
+        self.cenario.update()
         self.sprites_todos.update()
         
         novo_item = gerar_coletavel()
@@ -115,7 +118,7 @@ class Jogo:
                 self.game_over = True
 
     def desenhar(self):
-        self.tela.fill(PRETO)
+        self.cenario.draw(self.tela)
         self.sprites_todos.draw(self.tela)
         
         if self.game_over:
