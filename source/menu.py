@@ -10,9 +10,9 @@ class Estrela(pygame.sprite.Sprite):
         self.y = y
         self.tamanho = random.randint(1, 3)
         self.brilho = random.randint(100, 255)
-        self.imagem = pygame.Surface((self.tamanho, self.tamanho))
-        self.imagem.fill(BRANCO)
-        self.rect = self.imagem.get_rect()
+        self.image = pygame.Surface((self.tamanho, self.tamanho))
+        self.image.fill(BRANCO)
+        self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
         self.velocidade_brilho = random.choice([-2, -1, 1, 2])
@@ -23,7 +23,7 @@ class Estrela(pygame.sprite.Sprite):
             self.velocidade_brilho *= -1
 
         #brilho
-        self.imagem.fill((self.brilho, self.brilho, self.brilho))
+        self.image.fill((self.brilho, self.brilho, self.brilho))
 
 class MenuInicial:
     
