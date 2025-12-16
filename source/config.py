@@ -25,6 +25,8 @@ VELOCIDADE_TIRO = 10
 COOLDOWN_TIRO_PADRAO = 500
 
 #menu inicial
+pygame.init()
+
 screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 pygame.display.set_caption("SpaCINvadors")
 clock = pygame.time.Clock()
