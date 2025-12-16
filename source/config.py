@@ -20,3 +20,11 @@ TEMPO_INICIAL = 60
 VIDAS_INICIAIS = 3
 VELOCIDADE_TIRO = 10
 COOLDOWN_TIRO_PADRAO = 500
+
+# setup
+screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
+pygame.display.set_caption("SpaCINvadors")
+clock = pygame.time.Clock()
+font_large = pygame.font.Font(None, 80)
+font_medium = pygame.font.Font(None, 40)
+font_small = pygame.font.Font(None, 24)
