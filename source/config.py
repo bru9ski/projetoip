@@ -1,4 +1,5 @@
 import pygame
+import random
 
 # dimensões da tela
 LARGURA_TELA = 800
@@ -27,6 +28,6 @@ COOLDOWN_TIRO_PADRAO = 500
 screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
 pygame.display.set_caption("SpaCINvadors")
 clock = pygame.time.Clock()
-font_large = pygame.font.Font(0, 80)
-font_medium = pygame.font.Font(0, 40)
-font_small = pygame.font.Font(0, 24)
+font_large = pygame.font.Font(None, 80)
+font_medium = pygame.font.Font(None, 40)
+font_small = pygame.font.Font(None, 24)
