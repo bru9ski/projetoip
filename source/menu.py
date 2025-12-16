@@ -1,6 +1,6 @@
 import pygame
 import random
-from source.config import *
+from .config import LARGURA_TELA, ALTURA_TELA, PRETO, BRANCO, CYAN, AMARELO
 
 class Estrela(pygame.sprite.Sprite):
 
@@ -23,7 +23,7 @@ class Estrela(pygame.sprite.Sprite):
             self.velocidade_brilho *= -1
 
         #brilho
-        self.image.fill((self.brilho, self.brilho, self.brilho))
+        self.image.fill((0, 0, 0))
 
 class MenuInicial:
     
@@ -50,7 +50,7 @@ class MenuInicial:
         self.estrelas.update()
         self.estrelas.draw(tela)
 
-        # Título
+        #título
         titulo = self.font_titulo.render("SpaCINvadors", True, CYAN)
         rect_titulo = titulo.get_rect(center=(LARGURA_TELA // 2, 100))
         tela.blit(titulo, rect_titulo)
@@ -90,7 +90,7 @@ class MenuInicial:
                     if event.key == pygame.K_SPACE:
                         return True
 
-            self.desenhar(screen)
-            clock.tick(60)
+            self.desenhar(pygame.display.get_surface())
+            pygame.time.Clock().tick(60)
 
         return False

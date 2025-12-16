@@ -1,8 +1,8 @@
 import pygame
-from source.config import *
+from source.config import LARGURA_TELA, ALTURA_TELA, PRETO, BRANCO, CYAN, AMARELO
 
 class MenuPausa:
-    """Menu de pausa durante o jogo"""
+
     def __init__(self):
         self.font_titulo = pygame.font.Font(None, 80)
         self.font_instrucoes = pygame.font.Font(None, 40)
@@ -10,26 +10,26 @@ class MenuPausa:
         self.animacao_texto = 0
 
     def desenhar(self, tela):
-        """Desenha overlay de pausa"""
-        # Overlay escuro
+
+        #overlayescuro
         overlay = pygame.Surface((LARGURA_TELA, ALTURA_TELA))
         overlay.set_alpha(180)
         overlay.fill(PRETO)
         tela.blit(overlay, (0, 0))
 
-        # Título PAUSA
+        #pausa
         titulo = self.font_titulo.render("PAUSA", True, AMARELO)
         rect_titulo = titulo.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2 - 100))
         tela.blit(titulo, rect_titulo)
 
-        # Instrução para resumir (com piscar)
+        #piscar
         self.animacao_texto += 1
         if self.animacao_texto % 60 < 30:
             texto_resumir = self.font_instrucoes.render("P para resumir", True, CYAN)
             rect_resumir = texto_resumir.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2))
             tela.blit(texto_resumir, rect_resumir)
 
-        # Opções
+        #opções
         opcoes = [
             "ESC para sair do jogo"
         ]
@@ -44,7 +44,6 @@ class MenuPausa:
         pygame.display.flip()
 
     def aguardar_resumo(self, tela):
-        """Loop de pausa"""
         pausado = True
         while pausado:
             for event in pygame.event.get():
