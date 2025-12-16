@@ -1,0 +1,22 @@
+# dimensões da tela
+LARGURA_TELA = 800
+ALTURA_TELA = 600
+TITULO_JOGO = "SpaCINvadors"
+FPS = 60
+
+# cores
+PRETO = (0, 0, 0)
+BRANCO = (255, 255, 255)
+VERMELHO = (255, 0, 0)
+VERDE = (0, 255, 0)
+AZUL = (0, 0, 255)
+AMARELO = (255, 255, 0)
+CYAN = (0, 255, 255)
+MARROM = (139, 69, 19)
+ROXO = (128, 0, 128) 
+
+# configurações do jogo
+TEMPO_INICIAL = 60
+VIDAS_INICIAIS = 3
+VELOCIDADE_TIRO = 10
+COOLDOWN_TIRO_PADRAO = 500
