@@ -1,11 +1,39 @@
-import pygame
-import random
+import os
+import pygame 
 
-# dimensões da tela
-LARGURA_TELA = 800
-ALTURA_TELA = 600
+# dimensões de tela
+LARGURA_TELA = 600
+ALTURA_TELA = 800
 TITULO_JOGO = "SpaCINvadors"
 FPS = 60
+
+# configuração para caminhos
+PASTA_SOURCE = os.path.dirname(os.path.abspath(__file__))
+PASTA_PROJETO = os.path.dirname(PASTA_SOURCE)
+PASTA_IMG = os.path.join(PASTA_PROJETO, "assets", "img")
+
+def get_imagem(nome_arquivo):
+    return os.path.join(PASTA_IMG, nome_arquivo)
+
+# SISTEMA DE CACHE 
+IMAGENS_CACHE = {}
+
+def carregar_imagem_otimizada(nome_arquivo, tamanho=None):
+    # cria uma chave única 
+    chave_cache = (nome_arquivo, tamanho)
+
+    if chave_cache not in IMAGENS_CACHE:
+        try:
+            caminho = get_imagem(nome_arquivo)
+            img = pygame.image.load(caminho).convert_alpha()
+            if tamanho:
+                img = pygame.transform.scale(img, tamanho)
+            IMAGENS_CACHE[chave_cache] = img
+        except Exception as e:
+            print(f"Erro ao carregar {nome_arquivo}: {e}")
+            return None
+        
+    return IMAGENS_CACHE[chave_cache]
 
 # cores
 PRETO = (0, 0, 0)
@@ -18,18 +46,8 @@ CYAN = (0, 255, 255)
 MARROM = (139, 69, 19)
 ROXO = (128, 0, 128) 
 
-# configurações do jogo
+# configurações da gameplay
 TEMPO_INICIAL = 60
 VIDAS_INICIAIS = 3
 VELOCIDADE_TIRO = 10
-COOLDOWN_TIRO_PADRAO = 500
-
-#menu inicial
-pygame.init()
-
-screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
-pygame.display.set_caption("SpaCINvadors")
-clock = pygame.time.Clock()
-font_large = pygame.font.Font(None, 80)
-font_medium = pygame.font.Font(None, 40)
-font_small = pygame.font.Font(None, 24)
+COOLDOWN_TIRO_PADRAO = 400
