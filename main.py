@@ -4,6 +4,7 @@ from source.config import *
 from source.inimigos import Inimigo
 from source.jogador import Jogador
 from source.coletaveis import gerar_coletavel
+from source.cenario import Cenario
 from source.hud import HUD
 from source.menu import MenuInicial
 from source.pausa import MenuPausa
@@ -15,6 +16,7 @@ class Jogo:
         self.tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
         pygame.display.set_caption(TITULO_JOGO)
         self.clock = pygame.time.Clock()
+        self.cenario = Cenario()
         self.hud = HUD()
         self.menu_pausa = MenuPausa()
         
@@ -70,7 +72,8 @@ class Jogo:
     def atualizar(self):
         if self.game_over or self.pausado:
             return
-
+        
+        self.cenario.update()
         self.sprites_todos.update()
 
         novo_item = gerar_coletavel()
@@ -120,7 +123,7 @@ class Jogo:
                 self.game_over = True
 
     def desenhar(self):
-        self.tela.fill(PRETO)
+        self.cenario.draw(self.tela)
         self.sprites_todos.draw(self.tela)
 
         if self.game_over:
