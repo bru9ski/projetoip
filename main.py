@@ -76,10 +76,10 @@ class Jogo:
         self.cenario.update()
         self.sprites_todos.update()
 
-        novo_item = gerar_coletavel()
-        if novo_item:
-            self.coletaveis.add(novo_item)
-            self.sprites_todos.add(novo_item)
+        novo_coletavel = gerar_coletavel()
+        if novo_coletavel:
+            self.coletaveis.add(novo_coletavel)
+            self.sprites_todos.add(novo_coletavel)
 
         #logica dificuldade
         if self.jogador.cafe >= 3:
@@ -107,17 +107,17 @@ class Jogo:
         #colisões
         pygame.sprite.groupcollide(self.inimigos, self.tiros, True, True)
 
-        hits_coletavel = pygame.sprite.spritecollide(self.jogador, self.coletaveis, True)
-        for item in hits_coletavel:
-            if item.tipo == 'cafe':
+        coletaveis_colididos = pygame.sprite.spritecollide(self.jogador, self.coletaveis, True)
+        for coletavel in coletaveis_colididos:
+            if coletavel.tipo == 'cafe':
                 self.jogador.powerup_cafe()
-            elif item.tipo == 'relogio':
+            elif coletavel.tipo == 'relogio':
                 self.tempo_restante += 10
-            elif item.tipo == 'wifi':
+            elif coletavel.tipo == 'wifi':
                 self.jogador.powerup_wifi()
 
-        hits_dano = pygame.sprite.spritecollide(self.jogador, self.inimigos, True)
-        if hits_dano:
+        inimigos_colidindo = pygame.sprite.spritecollide(self.jogador, self.inimigos, True)
+        if inimigos_colidindo:
             morreu = self.jogador.receber_dano()
             if morreu:
                 self.game_over = True
@@ -140,6 +140,16 @@ class Jogo:
 
         pygame.display.flip()
 
+    def tratar_pausa(self):
+        if not self.pausado:
+            return
+
+        acao_pausa = self.menu_pausa.aguardar_resumo(self.tela)
+        if acao_pausa == "sair":
+            self.rodando = False
+        elif acao_pausa == "continuar":
+            self.pausado = False
+
     def executar(self):
         #menu inicial
         menu = MenuInicial()
@@ -150,14 +160,7 @@ class Jogo:
 
         while self.rodando:
             self.processar_eventos()
-            
-            if self.pausado:
-                resultado = self.menu_pausa.aguardar_resumo(self.tela)
-                if resultado == "sair":
-                    self.rodando = False
-                elif resultado == "continuar":
-                    self.pausado = False
-            
+            self.tratar_pausa()
             self.atualizar()
             self.desenhar()
             self.clock.tick(FPS)
