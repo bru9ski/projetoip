@@ -35,7 +35,6 @@ class MenuBase:
         except:
             self.fundo = None
 
-        # estrelas
         self.estrelas = pygame.sprite.Group()
         for _ in range(100):
             x = random.randint(0, LARGURA_TELA)
@@ -74,17 +73,14 @@ class MenuInicial(MenuBase):
 
             self.desenhar_base(canvas)
 
-            # título
             titulo = self.font_titulo.render("SpaCINvadors", True, CYAN)
             canvas.blit(titulo, titulo.get_rect(center=(LARGURA_TELA // 2, 170)))
 
-            # Pisca Texto
             self.animacao_texto += 1
             if self.animacao_texto % 60 < 30:
                 texto_start = self.font_instrucoes.render("PRESS SPACE", True, AMARELO)
                 canvas.blit(texto_start, texto_start.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2 - 100)))
 
-            # Instruções
             instrucoes = [
                 "Sobreviva o máximo de tempo possível!",
                 "SETAS: Mover | ESPAÇO: Atirar",
@@ -123,7 +119,6 @@ class MenuGameOver(MenuBase):
 
             self.desenhar_base(canvas)
 
-            # Texto GAME OVER
             lbl_go = self.font_titulo.render("GAME OVER", True, VERMELHO)
             canvas.blit(lbl_go, lbl_go.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2 - 50)))
 

@@ -7,7 +7,6 @@ class Coletavel(pygame.sprite.Sprite):
         super().__init__()
         self.tipo = tipo
         try:
-            # carrega as imagens
             img = pygame.image.load(get_imagem(f"{self.tipo}.png")).convert_alpha()
             self.image = pygame.transform.scale(img, (35, 35))
         except Exception as e:
@@ -27,11 +26,45 @@ class Coletavel(pygame.sprite.Sprite):
         if self.rect.top > ALTURA_TELA:
             self.kill()
 
-def gerar_coletavel():
-    chance = random.random()
-    if chance < 0.01:
+def gerar_coletavel(jogador, coletaveis_ativos, tempo_restante):
+    if len(coletaveis_ativos) >= 3:
+        return None
+
+    tipos_na_tela = [item.tipo for item in coletaveis_ativos]
+
+    if random.random() < 0.02: 
         tipos = ['cafe', 'relogio', 'wifi']
-        pesos = [10, 45, 45] 
+        pesos = [20, 40, 40] 
+
+        # lógica do cafézinho
+        if jogador.cafe == 1:
+            pesos = [60, 20, 20] 
+        elif jogador.cafe == 2:
+            pesos = [10, 45, 45] 
+        elif jogador.cafe >= 3:
+            pesos = [0, 50, 50]
+
+        # lógica do wifi 
+        if jogador.vidas >= 3:
+            pesos[2] = 0   
+        elif jogador.vidas == 1:
+            pesos[2] = 80 
+
+        # lógica do relogio
+        if tempo_restante > 50:
+            pesos[1] = 5   
+        elif tempo_restante < 15:
+            pesos[1] = 80  
+
+        # filtro para repetições
+        if 'cafe' in tipos_na_tela: pesos[0] = 0
+        if 'relogio' in tipos_na_tela: pesos[1] = 0
+        if 'wifi' in tipos_na_tela: pesos[2] = 0
+
+        if sum(pesos) == 0:
+            return None
+
         tipo = random.choices(tipos, weights=pesos, k=1)[0]
         return Coletavel(tipo)
+    
     return None

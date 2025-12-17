@@ -1,12 +1,12 @@
-import pygame
-import random
 import os
 
-# dimensões da tela 
+# dimensões de tela
 LARGURA_TELA = 600
 ALTURA_TELA = 800
 TITULO_JOGO = "SpaCINvadors"
 FPS = 60
+
+# configuração para caminhos
 PASTA_SOURCE = os.path.dirname(os.path.abspath(__file__))
 PASTA_PROJETO = os.path.dirname(PASTA_SOURCE)
 PASTA_IMG = os.path.join(PASTA_PROJETO, "assets", "img")
@@ -25,10 +25,8 @@ CYAN = (0, 255, 255)
 MARROM = (139, 69, 19)
 ROXO = (128, 0, 128) 
 
-# configurações do jogo
+# configurações da gameplay
 TEMPO_INICIAL = 60
 VIDAS_INICIAIS = 3
 VELOCIDADE_TIRO = 10
-COOLDOWN_TIRO_PADRAO = 400 
-
-pygame.init()
+COOLDOWN_TIRO_PADRAO = 400

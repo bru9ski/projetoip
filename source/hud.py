@@ -6,14 +6,11 @@ class HUD:
         self.fonte = pygame.font.SysFont("Arial", 24)
 
     def desenhar(self, tela, tempo_restante, vidas, cafes):
-        # tempo
         cor_tempo = VERMELHO if tempo_restante < 10 else BRANCO
         texto_tempo = self.fonte.render(f"Tempo: {tempo_restante}s", True, cor_tempo)
         
-        # vida
         texto_vidas = self.fonte.render(f"Wi-Fi: {vidas}", True, VERDE)
         
-        # café 
         if cafes >= 3:
             texto_cafe = self.fonte.render(f"Cafés: MAX (ESCUDO)", True, CYAN)
         else:

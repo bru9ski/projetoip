@@ -12,12 +12,10 @@ class MenuPausa:
         pausado = True
         clock = pygame.time.Clock()
 
-        # Cria um overlay escuro sobre o jogo atual
         overlay = pygame.Surface((LARGURA_TELA, ALTURA_TELA))
         overlay.set_alpha(150)
         overlay.fill(PRETO)
         
-        # Salva o estado atual do jogo 
         fundo_congelado = canvas.copy()
 
         while pausado:
@@ -29,7 +27,6 @@ class MenuPausa:
                         return "continuar"
                     if event.key == pygame.K_ESCAPE:
                         return "sair"
-                    # Permite alternar tela cheia também no pause
                     if event.key == pygame.K_RETURN and (pygame.key.get_mods() & pygame.KMOD_ALT):
                          pygame.display.toggle_fullscreen()
 
@@ -45,7 +42,6 @@ class MenuPausa:
                 canvas.blit(txt, txt.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2 + 20)))
 
             txt_sair = self.font_pequeno.render("ESC para Sair do Jogo", True, BRANCO)
-
             canvas.blit(txt_sair, txt_sair.get_rect(center=(LARGURA_TELA // 2, ALTURA_TELA // 2 + 80)))
 
             funcao_renderizacao()

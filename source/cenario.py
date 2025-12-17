@@ -7,23 +7,16 @@ class Cenario:
         self.frames = []
         self.frame_atual = 0
         self.ultimo_update = 0
-        
-        PULAR_QUADROS = 2 
-        
-        self.delay_animacao = 100 
+        self.delay_animacao = 40 
         
         try:
             caminho_arquivo = get_imagem("cenario.gif")
             pil_imagem = Image.open(caminho_arquivo)
             
-            for i, frame in enumerate(ImageSequence.Iterator(pil_imagem)):
+            for frame in ImageSequence.Iterator(pil_imagem):
                 
-                if i % PULAR_QUADROS != 0:
-                    continue
-
                 frame = frame.convert("RGBA")
-                
-                frame = frame.resize((LARGURA_TELA, ALTURA_TELA), Image.Resampling.NEAREST)
+                frame = frame.resize((LARGURA_TELA, ALTURA_TELA), Image.Resampling.LANCZOS)
                 
                 mode = frame.mode
                 size = frame.size

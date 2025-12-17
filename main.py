@@ -8,8 +8,9 @@ from source.cenario import Cenario
 from source.hud import HUD
 from source.menu import MenuInicial, MenuGameOver
 from source.pausa import MenuPausa
-from source.cenario import Cenario  
 
+# classe principal que gerencia o ciclo de vida do jogo
+# incluindo inicialização, loop principal, eventos e renderização.
 class Jogo:
     def __init__(self):
         pygame.init()
@@ -17,11 +18,9 @@ class Jogo:
         pygame.display.set_caption(TITULO_JOGO)
         
         self.canvas = pygame.Surface((LARGURA_TELA, ALTURA_TELA))
-        
         self.clock = pygame.time.Clock()
         
         self.cenario = Cenario() 
-        
         self.hud = HUD()
         self.menu_pausa = MenuPausa()
         self.menu_gameover = MenuGameOver()
@@ -36,7 +35,6 @@ class Jogo:
         self.evento_segundo = pygame.USEREVENT + 1
         pygame.time.set_timer(self.evento_segundo, 1000)
         
-        # sprites
         self.jogador = Jogador()
         self.sprites_todos = pygame.sprite.Group()
         self.sprites_todos.add(self.jogador)
@@ -77,23 +75,26 @@ class Jogo:
 
             teclas = pygame.key.get_pressed()
             if teclas[pygame.K_SPACE]:
-                tiro = self.jogador.atirar()
-                if tiro:
-                    self.tiros.add(tiro)
-                    self.sprites_todos.add(tiro)
+                tiro_ou_lista = self.jogador.atirar()
+                if tiro_ou_lista:
+                    if isinstance(tiro_ou_lista, list):
+                        for t in tiro_ou_lista:
+                            self.tiros.add(t)
+                            self.sprites_todos.add(t)
+                    else:
+                        self.tiros.add(tiro_ou_lista)
+                        self.sprites_todos.add(tiro_ou_lista)
 
     def atualizar(self):
         self.cenario.update()
-        
         self.sprites_todos.update()
 
-        # coletáveis
-        novo_item = gerar_coletavel()
+        novo_item = gerar_coletavel(self.jogador, self.coletaveis, self.tempo_restante)
+        
         if novo_item:
             self.coletaveis.add(novo_item)
             self.sprites_todos.add(novo_item)
 
-        # dificuldade
         if self.jogador.cafe >= 3:
             limite = 8; v_min = 6; v_max = 9
         else:
@@ -105,7 +106,6 @@ class Jogo:
             self.inimigos.add(novo_inimigo)
             self.sprites_todos.add(novo_inimigo)
 
-        # colisões
         pygame.sprite.groupcollide(self.inimigos, self.tiros, True, True)
 
         hits_coletavel = pygame.sprite.spritecollide(self.jogador, self.coletaveis, True)
@@ -122,29 +122,23 @@ class Jogo:
 
     def renderizar_tela_final(self):
         largura_janela, altura_janela = self.tela.get_size()
-        
         escala = min(largura_janela / LARGURA_TELA, altura_janela / ALTURA_TELA)
         nova_largura = int(LARGURA_TELA * escala)
         nova_altura = int(ALTURA_TELA * escala)
-        
         x_offset = (largura_janela - nova_largura) // 2
         y_offset = (altura_janela - nova_altura) // 2
-        
         img_escalada = pygame.transform.scale(self.canvas, (nova_largura, nova_altura))
-        
         self.tela.fill(PRETO)
         self.tela.blit(img_escalada, (x_offset, y_offset))
         pygame.display.flip()
 
     def desenhar_jogo(self):
         self.cenario.draw(self.canvas) 
-        
         self.sprites_todos.draw(self.canvas)
         self.hud.desenhar(self.canvas, self.tempo_restante, self.jogador.vidas, self.jogador.cafe)
         self.renderizar_tela_final()
 
     def executar(self):
-        # menu inicial
         menu = MenuInicial()
         acao = menu.executar(self.canvas, self.renderizar_tela_final)
         
@@ -152,7 +146,6 @@ class Jogo:
             pygame.quit()
             sys.exit()
 
-        # loop do jogo
         while self.rodando:
             if self.game_over:
                 acao_go = self.menu_gameover.executar(self.canvas, self.renderizar_tela_final)
