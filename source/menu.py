@@ -22,8 +22,9 @@ class Estrela(pygame.sprite.Sprite):
         if self.brilho <= 100 or self.brilho >= 255:
             self.velocidade_brilho *= -1
 
-        #brilho
-        self.image.fill((0, 0, 0))
+        # atualizar cor da estrela de acordo com o brilho (escala de cinza)
+        cor = (self.brilho, self.brilho, self.brilho)
+        self.image.fill(cor)
 
 class MenuInicial:
     
