@@ -1,4 +1,5 @@
 import os
+import pygame 
 
 # dimensões de tela
 LARGURA_TELA = 600
@@ -13,6 +14,26 @@ PASTA_IMG = os.path.join(PASTA_PROJETO, "assets", "img")
 
 def get_imagem(nome_arquivo):
     return os.path.join(PASTA_IMG, nome_arquivo)
+
+# SISTEMA DE CACHE 
+IMAGENS_CACHE = {}
+
+def carregar_imagem_otimizada(nome_arquivo, tamanho=None):
+    # cria uma chave única 
+    chave_cache = (nome_arquivo, tamanho)
+
+    if chave_cache not in IMAGENS_CACHE:
+        try:
+            caminho = get_imagem(nome_arquivo)
+            img = pygame.image.load(caminho).convert_alpha()
+            if tamanho:
+                img = pygame.transform.scale(img, tamanho)
+            IMAGENS_CACHE[chave_cache] = img
+        except Exception as e:
+            print(f"Erro ao carregar {nome_arquivo}: {e}")
+            return None
+        
+    return IMAGENS_CACHE[chave_cache]
 
 # cores
 PRETO = (0, 0, 0)

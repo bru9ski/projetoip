@@ -14,9 +14,9 @@ class Cenario:
             pil_imagem = Image.open(caminho_arquivo)
             
             for frame in ImageSequence.Iterator(pil_imagem):
-                
                 frame = frame.convert("RGBA")
-                frame = frame.resize((LARGURA_TELA, ALTURA_TELA), Image.Resampling.LANCZOS)
+                
+                frame = frame.resize((LARGURA_TELA, ALTURA_TELA), Image.Resampling.NEAREST)
                 
                 mode = frame.mode
                 size = frame.size
