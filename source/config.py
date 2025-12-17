@@ -1,11 +1,18 @@
 import pygame
 import random
+import os
 
-# dimensões da tela
-LARGURA_TELA = 800
-ALTURA_TELA = 600
+# dimensões da tela 
+LARGURA_TELA = 600
+ALTURA_TELA = 800
 TITULO_JOGO = "SpaCINvadors"
 FPS = 60
+PASTA_SOURCE = os.path.dirname(os.path.abspath(__file__))
+PASTA_PROJETO = os.path.dirname(PASTA_SOURCE)
+PASTA_IMG = os.path.join(PASTA_PROJETO, "assets", "img")
+
+def get_imagem(nome_arquivo):
+    return os.path.join(PASTA_IMG, nome_arquivo)
 
 # cores
 PRETO = (0, 0, 0)
@@ -22,14 +29,6 @@ ROXO = (128, 0, 128)
 TEMPO_INICIAL = 60
 VIDAS_INICIAIS = 3
 VELOCIDADE_TIRO = 10
-COOLDOWN_TIRO_PADRAO = 500
+COOLDOWN_TIRO_PADRAO = 400 
 
-#menu inicial
 pygame.init()
-
-screen = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA))
-pygame.display.set_caption("SpaCINvadors")
-clock = pygame.time.Clock()
-font_large = pygame.font.Font(None, 80)
-font_medium = pygame.font.Font(None, 40)
-font_small = pygame.font.Font(None, 24)

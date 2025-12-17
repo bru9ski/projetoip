@@ -6,19 +6,21 @@ class Coletavel(pygame.sprite.Sprite):
     def __init__(self, tipo):
         super().__init__()
         self.tipo = tipo
-        self.image = pygame.Surface((30, 30))
+        try:
+            # carrega as imagens
+            img = pygame.image.load(get_imagem(f"{self.tipo}.png")).convert_alpha()
+            self.image = pygame.transform.scale(img, (35, 35))
+        except Exception as e:
+            print(f"ERRO ASSET COLETAVEL {self.tipo}: {e}")
+            self.image = pygame.Surface((30, 30))
+            if self.tipo == 'cafe': self.image.fill(AMARELO)
+            elif self.tipo == 'relogio': self.image.fill(BRANCO)
+            elif self.tipo == 'wifi': self.image.fill(VERDE)
+
         self.rect = self.image.get_rect()
-        
-        self.rect.x = random.randrange(0, LARGURA_TELA - 30)
+        self.rect.x = random.randrange(0, LARGURA_TELA - 35)
         self.rect.y = random.randrange(-100, -40)
         self.velocidade_y = random.randrange(2, 5)
-        
-        if self.tipo == 'cafe':
-            self.image.fill(AMARELO)  
-        elif self.tipo == 'relogio':
-            self.image.fill(BRANCO)  
-        elif self.tipo == 'wifi':
-            self.image.fill(VERDE) 
 
     def update(self):
         self.rect.y += self.velocidade_y

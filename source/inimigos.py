@@ -5,8 +5,14 @@ from source.config import *
 class Inimigo(pygame.sprite.Sprite):
     def __init__(self, x, y, v_min=3, v_max=6):
         super().__init__()
-        self.image = pygame.Surface((40, 40))
-        self.image.fill(VERMELHO)
+        try:
+            img = pygame.image.load(get_imagem("inimigo.png")).convert_alpha()
+            self.image = pygame.transform.scale(img, (50, 50))
+        except Exception as e:
+            print(f"ERRO ASSET INIMIGO: {e}")
+            self.image = pygame.Surface((40, 40))
+            self.image.fill(VERMELHO)
+            
         self.rect = self.image.get_rect()
         self.rect.x = x
         self.rect.y = y
