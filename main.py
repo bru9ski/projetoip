@@ -4,6 +4,7 @@ from source.config import *
 from source.inimigos import Inimigo
 from source.jogador import Jogador
 from source.coletaveis import gerar_coletavel
+from source.cenario import Cenario
 from source.hud import HUD
 from source.menu import MenuInicial, MenuGameOver
 from source.pausa import MenuPausa
