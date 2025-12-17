@@ -114,8 +114,8 @@ class Jogo:
             elif item.tipo == 'relogio': self.tempo_restante += 10
             elif item.tipo == 'wifi': self.jogador.powerup_wifi()
 
-        hits_dano = pygame.sprite.spritecollide(self.jogador, self.inimigos, True)
-        if hits_dano:
+        inimigos_colidindo = pygame.sprite.spritecollide(self.jogador, self.inimigos, True)
+        if inimigos_colidindo:
             morreu = self.jogador.receber_dano()
             if morreu:
                 self.game_over = True
