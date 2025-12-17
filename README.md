@@ -1,6 +1,6 @@
 # 🎮 Jogo de Coleta - Sistema 2D em Python
 
-## 📝 Descrição
+## Descrição
 
 Sistema interativo em ambiente 2D desenvolvido com **Python e Pygame**, onde o jogador controla um objeto para coletar outros objetos dispostos na tela. O projeto implementa conceitos de **Orientação a Objetos** com classes, herança, polimorfismo e encapsulamento.
 
@@ -13,7 +13,7 @@ Sistema interativo em ambiente 2D desenvolvido com **Python e Pygame**, onde o j
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## Tecnologias Utilizadas
 
 ### Bibliotecas Principais
 
@@ -32,7 +32,7 @@ Sistema interativo em ambiente 2D desenvolvido com **Python e Pygame**, onde o j
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+## Arquitetura do Projeto
 
 ```
 .
@@ -129,7 +129,7 @@ Classe principal que orquestra todo o sistema.
 
 ---
 
-## 📊 Conceitos de OOP Utilizados
+## Conceitos de OOP Utilizados
 
 | Conceito | Localização | Descrição |
 |----------|-------------|-----------|
@@ -143,7 +143,7 @@ Classe principal que orquestra todo o sistema.
 
 ---
 
-## 🎮 Como Executar
+## Como Executar
 
 ### Pré-requisitos
 - Python 3.8 ou superior
@@ -194,7 +194,7 @@ python main.py
 
 ---
 
-## 🎯 Mecânicas do Jogo
+## Mecânicas do Jogo
 
 ### Objetivo
 Coletar o máximo de objetos possível para ganhar pontos.
@@ -231,7 +231,7 @@ Coletar o máximo de objetos possível para ganhar pontos.
 
 ---
 
-## 📈 Progression e Dificuldade
+## Progressão e Dificuldade
 
 - Máximo de 20 objetos na tela simultaneamente
 - Novos objetos aparecem a cada 30 frames (~2 segundos em 60 FPS)
@@ -240,7 +240,7 @@ Coletar o máximo de objetos possível para ganhar pontos.
 
 ---
 
-## 🧪 Testes
+## Testes
 
 ### Teste Manual de Funcionalidades
 
@@ -263,7 +263,7 @@ python -m unittest tests/
 
 ---
 
-## 🚀 Features Futuras / Extensões
+## Features Futuras / Extensões
 
 ### Melhorias Propostas
 - [ ] Sistema de fases com dificuldade progressiva
@@ -291,7 +291,7 @@ class PowerUp(ObjetoColetavel):
 
 ---
 
-## 📋 Estrutura de Código
+## Estrutura de Código
 
 ### Organização e Estilo
 
@@ -320,7 +320,7 @@ class Jogador:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Problema: "ModuleNotFoundError: No module named 'pygame'"
 **Solução:** Instale pygame com `pip install pygame`
@@ -336,7 +336,7 @@ class Jogador:
 
 ---
 
-## 👥 Equipe
+## Equipe
 
 | Nome | Função | Responsabilidades |
 |------|--------|-------------------|
@@ -348,7 +348,7 @@ class Jogador:
 
 ---
 
-## 📚 Referências
+## Referências
 
 - [Documentação Pygame](https://www.pygame.org/docs/)
 - [Python OOP Tutorial](https://docs.python.org/3/tutorial/classes.html)
@@ -357,13 +357,13 @@ class Jogador:
 
 ---
 
-## 📄 Licença
+## Licença
 
-Projeto educacional para disciplina de Introdução à Programação - UFPE
+Projeto educacional para disciplina de Introdução à Programação do CIN-UFPE
 
 ---
 
-## ✅ Checklist de Entrega
+## Checklist de Entrega
 
 - [x] Código-fonte funcional
 - [x] README.md com instruções
