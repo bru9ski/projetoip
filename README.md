@@ -1,7 +1,8 @@
-🎮 Jogo 2D em Pygame
+🎮 Projeto Introdução à Programação
 ===================
 
 Nome do jogo: SpaCINvadors
+
 Disciplina: Introdução à Porgramação
 
 
