@@ -6,14 +6,15 @@ Disciplina: Introdução à Porgramação
 
 👨‍💻 Divisão de Trabalho do Grupo
 --------------------------------
-| Integrante | Responsabilidade | Principais Tarefas |
-| :--- | :--- | :--- |
-| **Bruno Silva** | Gerência e Estrutura | Organização do projeto, estrutura de pastas e main.py. |
-| **Layse Gomes** | Jogador | Classe Jogador, movimentação, tiros e power-ups. |
-| **João Pedro Pessoa** | Inimigos | Classe Inimigo, velocidade e balanceamento. |
-| **Antonio Moura** | Itens Coletáveis | Lógica de spawn (Café, Relógio, Wi-Fi) e efeitos. |
-| **Ianne** | Interface e HUD | HUD, vidas, tempo e organização visual. |
-| **Kraus Jatobá** | Áudio e Menus | Menus, efeitos sonoros e trilha sonora. |
+| Integrantes | Responsabilidade | Principais Tarefas |
+
+|**Bruno Silva** – Organização do Projeto | Estrutura de Pastas e main.py.
+|**Layse Gomes** e **Kraus** – Classe Jogador | Movimentação, Tiros e Power-ups.
+|**Joao Azevedo** – Classe Inimigo | Velocidade e Balanceamento.
+|**Antonio Moura** – Lógica de spawn | (Café, Relógio, Wi-Fi) e Efeitos.
+|**Ianne fernandes** e **Layse**  – HUD | Vidas, Tempo e Organização visual.
+|**Kraus Jatobá** – Menus | Efeitos Sonoros e Trilha Sonora.
+
 
 📖 Descrição Geral do Projeto
 ----------------------------
@@ -47,6 +48,9 @@ controlar o loop principal, gerenciar os estados do jogo e integrar todos os mó
 
 🖼️ Galeria do Projeto
 --------------------
+![alt text](<Captura de tela 2025-12-18 013603.png>)
+![alt text](<Captura de tela 2025-12-18 013735.png>)
+![alt text](<Captura de tela 2025-12-18 013750.png>)
 
 🛠️ Ferramentas e Tecnologias
 -----------------------------
