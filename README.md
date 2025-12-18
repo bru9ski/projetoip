@@ -98,7 +98,9 @@ Lições aprendidas:
 1. Instalar o Python 3
 2. Instalar o Pygame com o comando:
    pip install pygame
-3. Executar o jogo com o comando:
+3. Instalar o Pillow com o comando:
+   pip install Pillow
+4. Executar o jogo com o comando:
    python main.py
 
 
