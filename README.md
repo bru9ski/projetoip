@@ -47,9 +47,9 @@ controlar o loop principal, gerenciar os estados do jogo e integrar todos os mó
 
 🖼️ Galeria do Projeto
 --------------------
-![Menu](./assets/menuInicial.png)
-![Gameplay](./assets/telaGameOver.png)
-![Itens](./assets/telaGameplay.png)
+(./assets/menuInicial.png)
+(./assets/telaGameOver.png)
+(./assets/telaGameplay.png)
 
 
 🛠️ Ferramentas e Tecnologias
