@@ -1,37 +1,19 @@
-🎮 Projeto Introdução à Programação
+🎮 SpaCINvadors
 ===================
-
-Nome do jogo: SpaCINvadors
 
 Disciplina: Introdução à Porgramação
 
 
 👨‍💻 Divisão de Trabalho do Grupo
 --------------------------------
-Integrante 1 – Gerência e Estrutura Geral
-Responsável pela organização do projeto, estrutura de pastas,
-classe principal do jogo (main.py) e controle do loop principal.
-
-Integrante 2 – Jogador
-Responsável pela implementação da classe Jogador, incluindo
-movimentação, sistema de tiros, vidas e power-ups.
-
-Integrante 3 – Inimigos
-Responsável pela criação da classe Inimigo, comportamento,
-movimentação, velocidade e balanceamento da dificuldade.
-
-Integrante 4 – Itens Coletáveis
-Responsável pela geração e lógica dos itens coletáveis,
-como café, relógio e Wi-Fi, além dos efeitos no jogador.
-
-Integrante 5 – Interface e HUD
-Responsável pela interface gráfica do jogo, HUD (vidas, tempo,
-indicadores de power-ups) e organização visual.
-
-Integrante 6 – Áudio e Menus
-Responsável pelos menus (menu inicial, pausa e game over),
-efeitos sonoros, músicas e sistema de música dinâmica.
-
+| Integrante | Responsabilidade | Principais Tarefas |
+| :--- | :--- | :--- |
+| **Bruno Silva** | Gerência e Estrutura | Organização do projeto, estrutura de pastas e main.py. |
+| **Layse Gomes** | Jogador | Classe Jogador, movimentação, tiros e power-ups. |
+| **João Pedro Pessoa** | Inimigos | Classe Inimigo, velocidade e balanceamento. |
+| **Antonio Moura** | Itens Coletáveis | Lógica de spawn (Café, Relógio, Wi-Fi) e efeitos. |
+| **Ianne** | Interface e HUD | HUD, vidas, tempo e organização visual. |
+| **Kraus Jatobá** | Áudio e Menus | Menus, efeitos sonoros e trilha sonora. |
 
 📖 Descrição Geral do Projeto
 ----------------------------
@@ -65,10 +47,9 @@ controlar o loop principal, gerenciar os estados do jogo e integrar todos os mó
 
 🖼️ Galeria do Projeto
 --------------------
-Adicionar capturas de tela do jogo em funcionamento, como:
-- Menu inicial
-- Tela de gameplay
-- Tela de game over
+![Menu](./assets/menuInicial.png)
+![Gameplay](./assets/telaGameOver.png)
+![Itens](./assets/telaGameplay.png)
 
 
 🛠️ Ferramentas e Tecnologias
