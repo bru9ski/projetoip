@@ -1,23 +1,42 @@
 🎮 Jogo 2D em Pygame
 ===================
 
-Nome do jogo: (coloque aqui)
-Disciplina: (coloque aqui)
+Nome do jogo: SpaCINvadors
+Disciplina: Introdução à Porgramação
 
 
-👥 Membros da Equipe
--------------------
-- Nome 1 – Estrutura geral do jogo e menus
-- Nome 2 – Jogador, tiros e power-ups
-- Nome 3 – Inimigos e colisões
-- Nome 4 – HUD, sons e música dinâmica
+👨‍💻 Divisão de Trabalho do Grupo
+--------------------------------
+Integrante 1 – Gerência e Estrutura Geral
+Responsável pela organização do projeto, estrutura de pastas,
+classe principal do jogo (main.py) e controle do loop principal.
+
+Integrante 2 – Jogador
+Responsável pela implementação da classe Jogador, incluindo
+movimentação, sistema de tiros, vidas e power-ups.
+
+Integrante 3 – Inimigos
+Responsável pela criação da classe Inimigo, comportamento,
+movimentação, velocidade e balanceamento da dificuldade.
+
+Integrante 4 – Itens Coletáveis
+Responsável pela geração e lógica dos itens coletáveis,
+como café, relógio e Wi-Fi, além dos efeitos no jogador.
+
+Integrante 5 – Interface e HUD
+Responsável pela interface gráfica do jogo, HUD (vidas, tempo,
+indicadores de power-ups) e organização visual.
+
+Integrante 6 – Áudio e Menus
+Responsável pelos menus (menu inicial, pausa e game over),
+efeitos sonoros, músicas e sistema de música dinâmica.
 
 
 📖 Descrição Geral do Projeto
 ----------------------------
 Este projeto consiste no desenvolvimento de um jogo 2D utilizando a biblioteca Pygame.
 O jogador controla um personagem que deve sobreviver o maior tempo possível, enfrentando
-inimigos, coletando itens e gerenciando recursos como vidas, tempo e power-ups.
+inimigos, coletando itens e gerenciando recursos como vidas, tempo e café (power-ups).
 
 O jogo possui menu inicial, menu de pausa, tela de game over, sistema de tempo,
 efeitos sonoros, música dinâmica e dificuldade progressiva.
@@ -29,18 +48,15 @@ O projeto foi desenvolvido de forma modular, separando as responsabilidades em
 diferentes arquivos dentro da pasta source/, facilitando a organização e manutenção
 do código.
 
-Estrutura do projeto:
+Descrição geral da estrutura:
 
-source/
-- config.py        → Constantes globais (cores, FPS, resolução)
-- jogador.py       → Classe Jogador (movimento, tiros, vidas e power-ups)
-- inimigos.py      → Classe Inimigo (movimentação e comportamento)
-- coletaveis.py    → Geração e lógica dos itens coletáveis
-- cenario.py       → Atualização e desenho do cenário
-- hud.py           → Interface gráfica (vidas, tempo, café)
-- menu.py          → Menu inicial e menu de game over
-- pausa.py         → Menu de pausa
-- main.py          → Loop principal e controle do jogo
+main.py inicia o jogo e chama o núcleo do sistema.
+core concentra regras gerais, estados e configurações.
+entities contém todos os objetos que interagem no jogo.
+ui gerencia interface gráfica e menus.
+world controla o ambiente e geração de entidades.
+audio organiza músicas e efeitos sonoros.
+assets armazena todos os recursos visuais e sonoros.
 
 A classe Jogo, localizada no arquivo main.py, é responsável por inicializar o sistema,
 controlar o loop principal, gerenciar os estados do jogo e integrar todos os módulos.
@@ -60,14 +76,7 @@ Adicionar capturas de tela do jogo em funcionamento, como:
 - Pygame – Desenvolvimento do jogo 2D
 - VS Code – Editor de código
 - Git/GitHub – Versionamento e colaboração
-
-
-👨‍💻 Divisão de Trabalho do Grupo
---------------------------------
-- Integrante 1: Loop principal, controle de estados e menus
-- Integrante 2: Jogador, tiros e sistema de power-ups
-- Integrante 3: Inimigos, colisões e balanceamento
-- Integrante 4: HUD, efeitos sonoros e música dinâmica
+- Trello - Dinâmica de trabalho em equipe
 
 
 📚 Conceitos da Disciplina Utilizados
