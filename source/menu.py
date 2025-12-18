@@ -58,6 +58,14 @@ class MenuInicial(MenuBase):
         super().__init__("menu.jpg")
 
     def executar(self, canvas, funcao_renderizacao):
+        # musica do menu
+        try:
+            pygame.mixer.music.load(get_som("menu.wav"))
+            pygame.mixer.music.set_volume(0.5)
+            pygame.mixer.music.play(0) 
+        except Exception as e:
+            print(f"Erro audio menu: {e}")
+
         esperando = True
         clock = pygame.time.Clock()
 
@@ -67,6 +75,7 @@ class MenuInicial(MenuBase):
                     return "sair"
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.stop() 
                         return "jogar"
                     if event.key == pygame.K_RETURN and (pygame.key.get_mods() & pygame.KMOD_ALT):
                          pygame.display.toggle_fullscreen()
@@ -102,6 +111,13 @@ class MenuGameOver(MenuBase):
         super().__init__("gameover.jpg") 
 
     def executar(self, canvas, funcao_renderizacao):
+        try:
+            pygame.mixer.music.load(get_som("gameover.wav"))
+            pygame.mixer.music.set_volume(0.6)
+            pygame.mixer.music.play(0) 
+        except Exception as e:
+            print(f"Erro audio gameover: {e}")
+
         esperando = True
         clock = pygame.time.Clock()
 
@@ -111,6 +127,7 @@ class MenuGameOver(MenuBase):
                     return "sair"
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
+                        pygame.mixer.music.stop()
                         return "reiniciar"
                     if event.key == pygame.K_ESCAPE:
                         return "sair"

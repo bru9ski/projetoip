@@ -9,11 +9,21 @@ from source.hud import HUD
 from source.menu import MenuInicial, MenuGameOver
 from source.pausa import MenuPausa
 
-# classe principal que gerencia o ciclo de vida do jogo
-# incluindo inicialização, loop principal, eventos e renderização.
 class Jogo:
     def __init__(self):
         pygame.init()
+        pygame.mixer.init()
+
+        try:
+            self.sfx_pega_escudo = pygame.mixer.Sound(get_som("pegaescudo.wav"))
+            self.sfx_pega_escudo.set_volume(0.8)
+            # duração do som
+            self.duracao_sfx_escudo = self.sfx_pega_escudo.get_length() * 1000
+        except Exception as e:
+            print(f"Erro ao carregar SFX pegaescudo: {e}")
+            self.sfx_pega_escudo = None
+            self.duracao_sfx_escudo = 0
+
         self.tela = pygame.display.set_mode((LARGURA_TELA, ALTURA_TELA), pygame.RESIZABLE)
         pygame.display.set_caption(TITULO_JOGO)
         
@@ -26,9 +36,14 @@ class Jogo:
         self.menu_gameover = MenuGameOver()
         
         self.rodando = True
-        self.reiniciar_jogo()
+        
+        # estados de música
+        self.estado_musical = "NORMAL" 
+        self.tempo_inicio_transicao = 0
+        
+        self.reiniciar_jogo(tocar_musica=False)
 
-    def reiniciar_jogo(self):
+    def reiniciar_jogo(self, tocar_musica=True):
         self.game_over = False
         self.pausado = False
         self.tempo_restante = TEMPO_INICIAL
@@ -42,8 +57,23 @@ class Jogo:
         self.coletaveis = pygame.sprite.Group()
         self.tiros = pygame.sprite.Group()
         
+        self.estado_musical = "NORMAL"
+        
         for i in range(5):
             self.criar_inimigo()
+
+        if tocar_musica:
+            self.tocar_musica_principal()
+
+    def tocar_musica_principal(self):
+        try:
+            pygame.mixer.music.stop()
+            pygame.mixer.music.load(get_som("rolajogo.wav"))
+            pygame.mixer.music.set_volume(0.4) 
+            pygame.mixer.music.play(-1, fade_ms=3000) 
+            self.estado_musical = "NORMAL"
+        except Exception as e:
+            print(f"Erro ao tocar rolajogo: {e}")
 
     def criar_inimigo(self):
         import random
@@ -64,7 +94,9 @@ class Jogo:
                         self.tela = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
                 if event.key == pygame.K_p:
+                    pygame.mixer.music.pause()
                     acao = self.menu_pausa.executar(self.canvas, self.renderizar_tela_final)
+                    pygame.mixer.music.unpause()
                     if acao == "sair":
                         self.rodando = False
 
@@ -85,12 +117,42 @@ class Jogo:
                         self.tiros.add(tiro_ou_lista)
                         self.sprites_todos.add(tiro_ou_lista)
 
+    def gerenciar_musica_dinamica(self):
+        agora = pygame.time.get_ticks()
+
+        # inicio da transição do escudo
+        if self.jogador.cafe >= 3 and self.estado_musical == "NORMAL":
+            pygame.mixer.music.stop()
+            
+            if self.sfx_pega_escudo:
+                self.sfx_pega_escudo.play()
+            
+            self.estado_musical = "TRANSICAO"
+            self.tempo_inicio_transicao = agora
+
+        elif self.estado_musical == "TRANSICAO":
+            # espera o som acabar
+            tempo_espera_exato = self.duracao_sfx_escudo - 42 
+            
+            if agora - self.tempo_inicio_transicao > tempo_espera_exato:
+                try:
+                    pygame.mixer.music.load(get_som("musicaescudo.wav"))
+                    pygame.mixer.music.set_volume(0.5)
+                    pygame.mixer.music.play(-1)
+                    self.estado_musical = "ESCUDO"
+                except:
+                    self.estado_musical = "ESCUDO"
+
+        # para voltar ao normal
+        elif self.jogador.cafe < 3 and (self.estado_musical == "ESCUDO" or self.estado_musical == "TRANSICAO"):
+            self.tocar_musica_principal()
+
     def atualizar(self):
         self.cenario.update()
         self.sprites_todos.update()
+        self.gerenciar_musica_dinamica()
 
         novo_item = gerar_coletavel(self.jogador, self.coletaveis, self.tempo_restante)
-        
         if novo_item:
             self.coletaveis.add(novo_item)
             self.sprites_todos.add(novo_item)
@@ -118,6 +180,7 @@ class Jogo:
         if inimigos_colidindo:
             morreu = self.jogador.receber_dano()
             if morreu:
+                pygame.mixer.music.stop()
                 self.game_over = True
 
     def renderizar_tela_final(self):
@@ -146,11 +209,14 @@ class Jogo:
             pygame.quit()
             sys.exit()
 
+        if acao == "jogar":
+            self.reiniciar_jogo(tocar_musica=True) 
+
         while self.rodando:
             if self.game_over:
                 acao_go = self.menu_gameover.executar(self.canvas, self.renderizar_tela_final)
                 if acao_go == "reiniciar":
-                    self.reiniciar_jogo()
+                    self.reiniciar_jogo(tocar_musica=True)
                 else:
                     self.rodando = False
             else:
